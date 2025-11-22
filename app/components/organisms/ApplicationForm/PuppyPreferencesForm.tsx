@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useApplicationForm } from '../../../context/ApplicationFormContext';
+import { useCart } from '../../../context/CartContext';
 import { getAllBreeds } from '../../../data/breeds';
 import { getAvailablePuppies, Puppy } from '../../../data/puppies';
 import { FaMars, FaVenus, FaEye } from 'react-icons/fa';
@@ -14,8 +15,42 @@ import { FaMars, FaVenus, FaEye } from 'react-icons/fa';
  */
 const PuppyPreferencesForm = () => {
   const { formData, updateFormData } = useApplicationForm();
+  const { items } = useCart();
   const breeds = getAllBreeds();
   const [showAvailablePuppies, setShowAvailablePuppies] = useState(false);
+  const [selectedPuppyId, setSelectedPuppyId] = useState<string>('');
+  const availablePuppyOptions = getAvailablePuppies();
+
+  // Autofill from cart (only if preferences are empty and cart has a puppy)
+  useEffect(() => {
+    const puppyInCart = items[0]?.puppy;
+    if (!puppyInCart) return;
+    // Only do this if form is still empty
+    const preferencesEmpty = !formData.breedChoices?.[0]?.breed && !formData.preferredGender && (!formData.preferredColors || formData.preferredColors.length === 0);
+    if (!preferencesEmpty) return;
+    // Find breed id for this puppy's breed
+    const breedId = breeds.find(b => b.name.toLowerCase() === puppyInCart.breed.toLowerCase())?.id;
+    if (!breedId) return;
+    updateFormData({
+      breedChoices: [{ priority: 1, breed: breedId }],
+      preferredGender: puppyInCart.gender,
+      preferredColors: [puppyInCart.color]
+    });
+  }, []); // Only run on mount
+
+  useEffect(() => {
+    if (!selectedPuppyId) return;
+    const selectedPuppy = availablePuppyOptions.find((p) => p.id === selectedPuppyId);
+    if (!selectedPuppy) return;
+    const breedId = breeds.find(b => b.name.toLowerCase() === selectedPuppy.breed.toLowerCase())?.id;
+    if (!breedId) return;
+    // Prefer the puppy's size if known, else leave as user set
+    updateFormData({
+      breedChoices: [{ priority: 1, breed: breedId }],
+      preferredGender: selectedPuppy.gender,
+      // You can map puppy size/generation if applicable, e.g. preferredSizes: [selectedPuppy.size]
+    });
+  }, [selectedPuppyId, breeds, updateFormData]);
   
   // Get available puppies and filter by preferences if selected
   const availablePuppies = useMemo(() => {
@@ -122,6 +157,29 @@ const PuppyPreferencesForm = () => {
           Please prioritize the breed(s) for which you are applying <span className="text-red-500">*</span>
         </h3>
         
+        <div>
+          <label htmlFor="selectPuppy" className="block text-lg font-medium text-gray-900 mb-3">
+            Select Your Puppy By Name (Recommended)
+          </label>
+          <select
+            id="selectPuppy"
+            name="selectPuppy"
+            value={selectedPuppyId}
+            onChange={e => setSelectedPuppyId(e.target.value)}
+            className="w-full border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+          >
+            <option value="">-- Select from available puppies --</option>
+            {availablePuppyOptions.map(puppy => (
+              <option key={puppy.id} value={puppy.id}>
+                {puppy.name} ({puppy.breed}, {puppy.gender}, {puppy.color})
+              </option>
+            ))}
+          </select>
+          {selectedPuppyId && (
+            <p className="text-green-700 text-sm mb-2">Preferences auto-matched to puppy selected above. (To edit preferences, clear or change your selection.)</p>
+          )}
+        </div>
+        
         <div className="space-y-4">
           <div>
             <label htmlFor="breedChoice-0" className="block text-sm font-medium text-gray-700 mb-1">
@@ -134,6 +192,7 @@ const PuppyPreferencesForm = () => {
               onChange={handleInputChange}
               className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
               required
+              disabled={!!selectedPuppyId}
             >
               <option value="">Select Breed</option>
               {breeds.map((breed) => (
@@ -267,6 +326,7 @@ const PuppyPreferencesForm = () => {
               checked={formData.preferredGender === 'male'}
               onChange={handleInputChange}
               className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              disabled={!!selectedPuppyId}
             />
             <label htmlFor="gender-male" className="ml-2 block text-sm text-gray-700">
               Male
@@ -282,6 +342,7 @@ const PuppyPreferencesForm = () => {
               checked={formData.preferredGender === 'female'}
               onChange={handleInputChange}
               className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              disabled={!!selectedPuppyId}
             />
             <label htmlFor="gender-female" className="ml-2 block text-sm text-gray-700">
               Female
@@ -297,90 +358,10 @@ const PuppyPreferencesForm = () => {
               checked={formData.preferredGender === 'either'}
               onChange={handleInputChange}
               className="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+              disabled={!!selectedPuppyId}
             />
             <label htmlFor="gender-either" className="ml-2 block text-sm text-gray-700">
               Either Gender
-            </label>
-          </div>
-        </div>
-      </div>
-      
-      <div>
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Preferred Color <span className="text-red-500">*</span>
-        </h3>
-        <p className="text-sm text-gray-600 mb-2">Check all that apply</p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-          {['apricot', 'black', 'blenheim', 'caramel', 'chocolate', 'merle', 'parti-color', 'phantom-bi', 'phantom-tri', 'red', 'silver', 'tan', 'white'].map((color) => (
-            <div key={color} className="flex items-center">
-              <input
-                type="checkbox"
-                id={`preferredColors-${color}`}
-                name={`preferredColors-${color}`}
-                checked={formData.preferredColors.includes(color)}
-                onChange={handleInputChange}
-                className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              />
-              <label htmlFor={`preferredColors-${color}`} className="ml-2 block text-sm text-gray-700">
-                {color === 'parti-color' ? 'Parti-color (multi)' : 
-                 color === 'phantom-bi' ? 'Phantom (bi-color)' : 
-                 color === 'phantom-tri' ? 'Phantom (tri-color)' : 
-                 color === 'silver' ? 'Silver/blue' : 
-                 color === 'white' ? 'White/cream' : 
-                 color.charAt(0).toUpperCase() + color.slice(1)}
-              </label>
-            </div>
-          ))}
-        </div>
-      </div>
-      
-      <div>
-        <h3 className="text-lg font-medium text-gray-900 mb-4">
-          Preferred Coat Type <span className="text-red-500">*</span>
-        </h3>
-        <p className="text-sm text-gray-600 mb-2">Check all that apply</p>
-        
-        <div className="space-y-2">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredCoatTypes-straight"
-              name="preferredCoatTypes-straight"
-              checked={formData.preferredCoatTypes.includes('straight')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-            />
-            <label htmlFor="preferredCoatTypes-straight" className="ml-2 block text-sm text-gray-700">
-              Straight (flat)
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredCoatTypes-wavy"
-              name="preferredCoatTypes-wavy"
-              checked={formData.preferredCoatTypes.includes('wavy')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-            />
-            <label htmlFor="preferredCoatTypes-wavy" className="ml-2 block text-sm text-gray-700">
-              Wavy (shaggy)
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredCoatTypes-curly"
-              name="preferredCoatTypes-curly"
-              checked={formData.preferredCoatTypes.includes('curly')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-            />
-            <label htmlFor="preferredCoatTypes-curly" className="ml-2 block text-sm text-gray-700">
-              Curly (wooly)
             </label>
           </div>
         </div>
