@@ -1,7 +1,12 @@
 'use client';
 
+import { useState, useMemo } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useApplicationForm } from '../../../context/ApplicationFormContext';
 import { getAllBreeds } from '../../../data/breeds';
+import { getAvailablePuppies, Puppy } from '../../../data/puppies';
+import { FaMars, FaVenus, FaEye } from 'react-icons/fa';
 
 /**
  * PuppyPreferencesForm component for Step 2 of the application form
@@ -10,6 +15,52 @@ import { getAllBreeds } from '../../../data/breeds';
 const PuppyPreferencesForm = () => {
   const { formData, updateFormData } = useApplicationForm();
   const breeds = getAllBreeds();
+  const [showAvailablePuppies, setShowAvailablePuppies] = useState(false);
+  
+  // Get available puppies and filter by preferences if selected
+  const availablePuppies = useMemo(() => {
+    let puppies = getAvailablePuppies();
+    
+    // Filter by breed if selected
+    if (formData.breedChoices[0]?.breed) {
+      const selectedBreed = breeds.find(b => b.id === formData.breedChoices[0].breed);
+      if (selectedBreed) {
+        puppies = puppies.filter(p => p.breed === selectedBreed.name);
+      }
+    }
+    
+    // Filter by gender if selected
+    if (formData.preferredGender && formData.preferredGender !== 'either') {
+      puppies = puppies.filter(p => p.gender === formData.preferredGender);
+    }
+    
+    // Filter by color if selected
+    if (formData.preferredColors.length > 0) {
+      puppies = puppies.filter(p => 
+        formData.preferredColors.some(color => 
+          p.color.toLowerCase().includes(color.toLowerCase())
+        )
+      );
+    }
+    
+    return puppies;
+  }, [formData.breedChoices, formData.preferredGender, formData.preferredColors, breeds]);
+  
+  const calculateAge = (birthDate: string): string => {
+    const birthDateObj = new Date(birthDate);
+    const today = new Date();
+    const diffTime = Math.abs(today.getTime() - birthDateObj.getTime());
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffWeeks = Math.floor(diffDays / 7);
+    
+    if (diffWeeks < 1) {
+      return `${diffDays} days old`;
+    } else if (diffWeeks === 1) {
+      return '1 week old';
+    } else {
+      return `${diffWeeks} weeks old`;
+    }
+  };
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type } = e.target;
@@ -439,6 +490,100 @@ const PuppyPreferencesForm = () => {
             </label>
           </div>
         </div>
+      </div>
+      
+      {/* Available Puppies Section */}
+      <div className="border-t border-gray-200 pt-8 mt-8">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-lg font-medium text-gray-900">
+              Available Puppies Matching Your Preferences
+            </h3>
+            <p className="text-sm text-gray-600 mt-1">
+              {availablePuppies.length > 0 
+                ? `${availablePuppies.length} ${availablePuppies.length === 1 ? 'puppy' : 'puppies'} available`
+                : 'No puppies match your current preferences. Try adjusting your selections.'}
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => setShowAvailablePuppies(!showAvailablePuppies)}
+            className="text-primary hover:text-primary/80 font-medium text-sm flex items-center"
+          >
+            <FaEye className="mr-2" />
+            {showAvailablePuppies ? 'Hide' : 'Show'} Puppies
+          </button>
+        </div>
+        
+        {showAvailablePuppies && (
+          <div className="mt-4">
+            {availablePuppies.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {availablePuppies.map((puppy) => (
+                  <div
+                    key={puppy.id}
+                    className="bg-gray-50 rounded-lg overflow-hidden border border-gray-200 hover:border-primary transition-colors"
+                  >
+                    <div className="relative h-48">
+                      <Image
+                        src={puppy.images[0] || '/images/placeholder-puppy.jpg'}
+                        alt={`${puppy.name} - ${puppy.breed}`}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute top-2 right-2">
+                        <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-500 text-white">
+                          Available
+                        </span>
+                      </div>
+                    </div>
+                    <div className="p-4">
+                      <div className="flex items-center justify-between mb-2">
+                        <h4 className="font-bold text-gray-900">{puppy.name}</h4>
+                        <div className={`${puppy.gender === 'male' ? 'bg-blue-100 text-blue-600' : 'bg-pink-100 text-pink-600'} p-1 rounded-full`}>
+                          {puppy.gender === 'male' ? <FaMars size={12} /> : <FaVenus size={12} />}
+                        </div>
+                      </div>
+                      <p className="text-sm text-gray-600 mb-1">{puppy.breed}</p>
+                      <p className="text-xs text-gray-500 mb-2">{calculateAge(puppy.birthDate)}</p>
+                      <div className="flex items-center justify-between mb-3">
+                        <span className="text-sm font-semibold text-primary">${puppy.price.toLocaleString()}</span>
+                        <span className="text-xs text-gray-600 capitalize">{puppy.color}</span>
+                      </div>
+                      <Link
+                        href={`/puppies/${puppy.id}`}
+                        target="_blank"
+                        className="block w-full text-center text-sm bg-primary hover:bg-primary/90 text-white font-medium py-2 px-4 rounded-md transition-colors"
+                      >
+                        View Details
+                      </Link>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center">
+                <p className="text-gray-700 mb-2">
+                  No puppies currently match your selected preferences.
+                </p>
+                <p className="text-sm text-gray-600">
+                  Try adjusting your breed, gender, or color preferences, or check back later for new litters!
+                </p>
+              </div>
+            )}
+            
+            {/* Show all available puppies link */}
+            <div className="mt-4 text-center">
+              <Link
+                href="/puppies"
+                target="_blank"
+                className="text-primary hover:text-primary/80 font-medium text-sm"
+              >
+                View All Available Puppies →
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
