@@ -125,7 +125,6 @@ const PuppyCard = ({ puppy }: PuppyCardProps) => {
               e.preventDefault();
                   if (puppy.status === 'available') {
                     addToCart(puppy);
-                    router.push('/cart');
                   }
             }}
             aria-label="Reserve puppy"

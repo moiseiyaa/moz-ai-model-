@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from 'react-icons/fa';
 
 /**
@@ -21,10 +22,15 @@ const Footer = () => {
           {/* Company Info */}
           <div>
             <div className="flex items-center mb-4">
-              <div className="mr-2 relative w-8 h-8 bg-linear-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
-                <span className="text-white text-sm font-bold">P</span>
-              </div>
-              <h3 className="text-2xl font-bold bg-linear-to-r from-white to-primary-200 bg-clip-text text-transparent">PuppyHub USA</h3>
+              <Link href="/" className="flex items-center">
+                <Image
+                  src="/images/icons/logo.png"
+                  alt="PuppyHub USA Logo"
+                  width={140}
+                  height={40}
+                  className="h-8 w-auto"
+                />
+              </Link>
             </div>
             <p className="text-gray-300 mb-4">
               Finding loving homes for puppies across the United States.

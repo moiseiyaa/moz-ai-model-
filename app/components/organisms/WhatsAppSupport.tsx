@@ -9,7 +9,7 @@ import { FaWhatsapp, FaTimes, FaCommentDots } from 'react-icons/fa';
  */
 const WhatsAppSupport = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const phoneNumber = '+1234567890'; // Replace with actual WhatsApp number
+  const phoneNumber = '14107258531'; // WhatsApp number without formatting
   const message = 'Hello! I\'m interested in learning more about your puppies.';
 
   const handleWhatsAppClick = () => {
