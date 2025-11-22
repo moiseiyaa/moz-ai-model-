@@ -90,20 +90,20 @@ const DeliveryPage = () => {
 
   const faqs = [
     {
-      question: 'How old are puppies when they're ready for delivery?',
-      answer: 'Our puppies are available for delivery or pickup when they are 8-10 weeks old. This ensures they've had adequate time with their mother and littermates for proper socialization and development.'
+      question: "How old are puppies when they're ready for delivery?",
+      answer: "Our puppies are available for delivery or pickup when they are 8-10 weeks old. This ensures they've had adequate time with their mother and littermates for proper socialization and development."
     },
     {
-      question: 'Is air travel safe for puppies?',
-      answer: 'Yes, when done properly. Our flight nannies are experienced in traveling with puppies and follow strict protocols to ensure their comfort and safety. Puppies travel in the cabin (never cargo) with their flight nanny, who monitors them throughout the journey.'
+      question: "Is air travel safe for puppies?",
+      answer: "Yes, when done properly. Our flight nannies are experienced in traveling with puppies and follow strict protocols to ensure their comfort and safety. Puppies travel in the cabin (never cargo) with their flight nanny, who monitors them throughout the journey."
     },
     {
-      question: 'What happens if there are travel delays?',
-      answer: 'Our delivery team is prepared for unexpected delays. Flight nannies carry puppy supplies (food, water, pee pads, etc.) and will ensure your puppy remains comfortable. You'll be kept updated throughout the process and informed of any changes to the arrival time.'
+      question: "What happens if there are travel delays?",
+      answer: "Our delivery team is prepared for unexpected delays. Flight nannies carry puppy supplies (food, water, pee pads, etc.) and will ensure your puppy remains comfortable. You'll be kept updated throughout the process and informed of any changes to the arrival time."
     },
     {
-      question: 'Can I track my puppy during delivery?',
-      answer: 'Yes! For both ground and air transportation, you'll receive regular updates including photos and location information. Our delivery team will stay in touch with you throughout the journey.'
+      question: "Can I track my puppy during delivery?",
+      answer: "Yes! For both ground and air transportation, you'll receive regular updates including photos and location information. Our delivery team will stay in touch with you throughout the journey."
     }
   ];
 

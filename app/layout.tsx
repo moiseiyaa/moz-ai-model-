@@ -1,23 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/organisms/Navbar";
 import Footer from "./components/organisms/Footer";
 import WhatsAppSupport from "./components/organisms/WhatsAppSupport";
 import { CartProvider } from "./context/CartContext";
 import ScrollToTop from "./components/utils/ScrollToTop";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -94,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className="antialiased min-h-screen flex flex-col"
       >
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-white focus:text-primary focus:z-50">
           Skip to main content

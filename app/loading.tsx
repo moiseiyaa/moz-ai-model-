@@ -10,7 +10,7 @@ export default function Loading() {
   return (
     <>
       {/* Progress loader at the top - fixed position */}
-      <div className="fixed top-0 left-0 right-0 z-[100]">
+      <div className="fixed top-0 left-0 right-0 z-100">
         <div className="loader" style={{ width: '100%' }}></div>
       </div>
       

@@ -10,16 +10,17 @@ const AgreementsForm = () => {
   const { formData, updateFormData } = useApplicationForm();
   
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value, type, checked } = e.target;
+    const target = e.target as HTMLInputElement | HTMLSelectElement;
+    const { name, value } = target;
     
     // Handle checkbox inputs
-    if (type === 'checkbox') {
-      updateFormData({ [name]: checked });
+    if (target instanceof HTMLInputElement && target.type === 'checkbox') {
+      updateFormData({ [name]: target.checked });
       return;
     }
     
     // Handle radio inputs
-    if (type === 'radio') {
+    if (target instanceof HTMLInputElement && target.type === 'radio') {
       updateFormData({ [name]: value });
       return;
     }

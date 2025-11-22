@@ -59,6 +59,6 @@
     }
   ],
   "env": {
-    "NEXT_PUBLIC_API_URL": "https://api.puppyhubusa.com"
+    "NEXT_PUBLIC_API_URL": "@next_public_api_url"
   }
 }
