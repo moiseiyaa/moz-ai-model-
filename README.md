@@ -1,36 +1,148 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# PuppyHub USA - Frontend
 
-## Getting Started
+![PuppyHub USA Logo](public/images/logo.png)
 
-First, run the development server:
+A modern, responsive frontend for PuppyHub USA - a premier puppy adoption service connecting loving families with healthy, ethically bred puppies across the United States.
+
+## 🐶 Project Overview
+
+PuppyHub USA is a comprehensive frontend application built with Next.js, Tailwind CSS, and TypeScript. It provides a seamless experience for users looking to adopt puppies, featuring:
+
+- **Responsive Design**: Mobile-first approach ensuring a great experience on all devices
+- **Accessibility**: WCAG compliant with keyboard navigation and screen reader support
+- **SEO Optimization**: Structured metadata, sitemaps, and optimized content
+- **Performance**: Lazy loading, code splitting, and optimized assets
+
+## 🚀 Tech Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) with App Router
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **UI Components**: [Shadcn UI](https://ui.shadcn.com/)
+- **State Management**: React Context API
+- **Form Handling**: React Hook Form with Zod validation
+- **Data Fetching**: TanStack Query (React Query)
+- **Testing**: Jest, React Testing Library, Playwright
+
+## 🛠️ Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or later
+- npm or yarn
+
+### Installation
+
+1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/puppyhub-usa.git
+cd puppyhub-usa/client
+```
+
+2. Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server
 
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🧪 Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Unit and Integration Tests
 
-## Learn More
+Run Jest and React Testing Library tests:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run test
+# or
+yarn test
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run tests in watch mode:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run test:watch
+# or
+yarn test:watch
+```
 
-## Deploy on Vercel
+### End-to-End Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Run Playwright tests:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run test:e2e
+# or
+yarn test:e2e
+```
+
+## 📦 Project Structure
+
+```
+/app
+  /components        # UI components organized by atomic design
+    /atoms           # Basic building blocks (buttons, inputs)
+    /molecules       # Combinations of atoms (cards, form fields)
+    /organisms       # Complex UI sections (header, footer)
+    /utils           # Utility components (animations, skeletons)
+  /context          # React Context providers
+  /data             # Mock data and API utilities
+  /lib              # Utility functions and helpers
+  /pages            # Page components
+  /public           # Static assets
+  /styles           # Global styles
+```
+
+## 🚢 Deployment
+
+### Deploy to Vercel
+
+The easiest way to deploy this Next.js app is to use [Vercel](https://vercel.com), the platform from the creators of Next.js.
+
+1. Create a Vercel account if you don't have one
+2. Install the Vercel CLI: `npm i -g vercel`
+3. Run `vercel` from the project root and follow the prompts
+
+Alternatively, you can connect your GitHub repository to Vercel for automatic deployments.
+
+### Environment Variables
+
+The following environment variables should be set in your deployment environment:
+
+```
+NEXT_PUBLIC_API_URL=https://api.puppyhubusa.com
+```
+
+## 🔒 Security
+
+This project implements several security best practices:
+
+- Content Security Policy (CSP) headers
+- HTTPS enforcement
+- Protection against XSS, CSRF, and clickjacking
+- Secure cookie handling
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+## 👥 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add some amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request

@@ -1,0 +1,154 @@
+import Link from 'next/link';
+import { FaFacebook, FaTwitter, FaInstagram, FaYoutube, FaPinterest } from 'react-icons/fa';
+
+/**
+ * Footer component for PuppyHub USA website
+ * Includes navigation links, contact information, and social media links
+ */
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="bg-linear-to-br from-primary-900 via-primary-800 to-primary-900 text-blue relative overflow-hidden">
+      {/* Decorative elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-10">
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary-400 mix-blend-overlay animate-float"></div>
+        <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-secondary-400 mix-blend-overlay animate-float" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-40 right-20 w-20 h-20 rounded-full bg-accent-purple mix-blend-overlay animate-float" style={{ animationDelay: '2s' }}></div>
+      </div>
+      <div className="container mx-auto px-4 md:px-6 max-w-[1440px] py-16 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Company Info */}
+          <div>
+            <div className="flex items-center mb-4">
+              <div className="mr-2 relative w-8 h-8 bg-linear-to-br from-primary-400 to-primary-600 rounded-full flex items-center justify-center">
+                <span className="text-white text-sm font-bold">P</span>
+              </div>
+              <h3 className="text-2xl font-bold bg-linear-to-r from-white to-primary-200 bg-clip-text text-transparent">PuppyHub USA</h3>
+            </div>
+            <p className="text-gray-300 mb-4">
+              Finding loving homes for puppies across the United States.
+            </p>
+            <div className="flex space-x-4 mt-6">
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="bg-primary-700 hover:bg-primary-600 p-2 rounded-full transition-all duration-300 hover:shadow-glow transform hover:scale-110">
+                <FaFacebook className="h-5 w-5 text-white" />
+              </a>
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter" className="bg-primary-700 hover:bg-primary-600 p-2 rounded-full transition-all duration-300 hover:shadow-glow transform hover:scale-110">
+                <FaTwitter className="h-5 w-5 text-white" />
+              </a>
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="bg-primary-700 hover:bg-primary-600 p-2 rounded-full transition-all duration-300 hover:shadow-glow transform hover:scale-110">
+                <FaInstagram className="h-5 w-5 text-white" />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="bg-primary-700 hover:bg-primary-600 p-2 rounded-full transition-all duration-300 hover:shadow-glow transform hover:scale-110">
+                <FaYoutube className="h-5 w-5 text-white" />
+              </a>
+              <a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" className="bg-primary-700 hover:bg-primary-600 p-2 rounded-full transition-all duration-300 hover:shadow-glow transform hover:scale-110">
+                <FaPinterest className="h-5 w-5 text-white" />
+              </a>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 bg-linear-to-r from-white to-primary-200 bg-clip-text text-transparent">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/puppies" className="text-gray-300 hover:text-white transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary-400 mr-2 group-hover:bg-secondary-300 transition-colors"></span>
+                  <span className="group-hover:translate-x-1 transition-transform">Available Puppies</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-300 hover:text-white transition-colors">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/process" className="text-gray-300 hover:text-white transition-colors">
+                  How It Works
+                </Link>
+              </li>
+              <li>
+                <Link href="/training" className="text-gray-300 hover:text-white transition-colors">
+                  Training & Services
+                </Link>
+              </li>
+              <li>
+                <Link href="/delivery" className="text-gray-300 hover:text-white transition-colors">
+                  Delivery & Travel
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-gray-300 hover:text-white transition-colors">
+                  FAQ
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Legal */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 bg-linear-to-r from-white to-primary-200 bg-clip-text text-transparent">Legal</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/terms" className="text-gray-300 hover:text-white transition-colors flex items-center group">
+                  <span className="w-1.5 h-1.5 rounded-full bg-secondary-400 mr-2 group-hover:bg-secondary-300 transition-colors"></span>
+                  <span className="group-hover:translate-x-1 transition-transform">Terms of Service</span>
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="text-gray-300 hover:text-white transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/health-guarantee" className="text-gray-300 hover:text-white transition-colors">
+                  Health Guarantee
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h3 className="text-xl font-bold mb-4 bg-linear-to-r from-white to-primary-200 bg-clip-text text-transparent">Contact</h3>
+            <address className="not-italic text-gray-300">
+              <p className="mb-2">1234 Puppy Lane</p>
+              <p className="mb-2">Denver, CO 80202</p>
+              <p className="mb-2">
+                <a href="tel:+18005551234" className="hover:text-white transition-colors">
+                  (800) 555-1234
+                </a>
+              </p>
+              <p>
+                <a href="mailto:info@puppyhubusa.com" className="hover:text-white transition-colors">
+                  info@puppyhubusa.com
+                </a>
+              </p>
+            </address>
+          </div>
+        </div>
+
+        <div className="bg-primary-950/80 backdrop-blur-sm py-6 relative z-10">
+          <div className="container mx-auto px-4 md:px-6 max-w-[1440px] flex flex-col md:flex-row justify-between items-center">
+            <div className="flex space-x-6">
+              <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">Terms</Link>
+              <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">Privacy</Link>
+              <Link href="/sitemap" className="text-gray-400 hover:text-white text-sm transition-colors">Sitemap</Link>
+            </div>
+          </div>
+        </div>
+        
+        {/* Bottom centered paragraphs */}
+        <div className="text-center pb-6 pt-4">
+          <p className="text-gray-400 text-sm mb-2">&copy; {currentYear} PuppyHub USA. All rights reserved.</p>
+          <p className="text-gray-400 text-sm">
+            PuppyHub USA is committed to responsible breeding practices and the welfare of all puppies.
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

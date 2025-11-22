@@ -1,0 +1,42 @@
+'use client';
+
+import Container from './components/organisms/Container';
+
+/**
+ * Loading component
+ * Displayed during page transitions and data fetching
+ */
+export default function Loading() {
+  return (
+    <div className="py-16 md:py-24 min-h-[70vh] flex items-center justify-center">
+      <Container>
+        <div className="flex flex-col items-center justify-center">
+          <div className="relative">
+            {/* Paw print loading animation */}
+            <div className="flex gap-2">
+              {[1, 2, 3, 4, 5].map((i) => (
+                <div 
+                  key={i} 
+                  className="w-4 h-4 rounded-full bg-primary-500"
+                  style={{
+                    animation: `bounce 1.4s ease-in-out ${i * 0.12}s infinite both`
+                  }}
+                />
+              ))}
+            </div>
+            <h2 className="mt-8 text-2xl font-bold text-center text-gray-800">Loading...</h2>
+            <p className="mt-2 text-center text-gray-600">Finding perfect puppies for you</p>
+          </div>
+        </div>
+      </Container>
+      
+      {/* Add the bounce animation */}
+      <style jsx global>{`
+        @keyframes bounce {
+          0%, 80%, 100% { transform: translateY(0); }
+          40% { transform: translateY(-20px); }
+        }
+      `}</style>
+    </div>
+  );
+}
