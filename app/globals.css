@@ -35,6 +35,22 @@
   --accent-teal: #14b8a6;
   --accent-yellow: #eab308;
   --accent-green: #22c55e;
+  
+  /* Neutral colors */
+  --neutral-50: #fafafa;
+  --neutral-100: #f5f5f5;
+  --neutral-200: #e5e5e5;
+  --neutral-300: #d4d4d4;
+  --neutral-400: #a3a3a3;
+  --neutral-500: #737373;
+  --neutral-600: #525252;
+  --neutral-700: #404040;
+  --neutral-800: #262626;
+  --neutral-900: #171717;
+  
+  /* Font variables */
+  --font-geist-sans: system-ui, sans-serif;
+  --font-geist-mono: monospace;
 }
 
 @theme inline {
@@ -114,6 +130,18 @@
     --secondary-700: #fdba74;
     --secondary-800: #fed7aa;
     --secondary-900: #ffedd5;
+    
+    /* Adjust neutral colors for dark mode */
+    --neutral-50: #0a0a0a;
+    --neutral-100: #171717;
+    --neutral-200: #262626;
+    --neutral-300: #404040;
+    --neutral-400: #525252;
+    --neutral-500: #737373;
+    --neutral-600: #a3a3a3;
+    --neutral-700: #d4d4d4;
+    --neutral-800: #e5e5e5;
+    --neutral-900: #f5f5f5;
   }
 }
 
