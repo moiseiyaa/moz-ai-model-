@@ -46,7 +46,7 @@ const WhatsAppSupport = () => {
             {/* Header */}
             <div className="bg-linear-to-r from-[#25D366] to-[#20BA5A] p-4 flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="bg-white/20 p-2 rounded-full">
+                <div className="bg-white/20 p-2 rounded-full shrink-0">
                   <FaCommentDots className="h-5 w-5 text-white" />
                 </div>
                 <div>
