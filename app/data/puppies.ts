@@ -19,6 +19,60 @@ export interface Puppy {
 
 export const puppies: Puppy[] = [
   {
+    id: 'p-101',
+    name: 'Sophie',
+    breed: 'Poodle',
+    status: 'available',
+    gender: 'female',
+    birthDate: '2025-08-25',
+    images: ['/images/puppies/sophie-1.jpg', '/images/puppies/sophie-2.jpg', '/images/puppies/sophie-3.jpg'],
+    color: 'apricot',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/poodle-sire-1.jpg',
+      dam: '/images/parents/poodle-dam-1.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies', 'Bordetella'],
+    price: 875,
+    notes: 'Miniature Poodle, very intelligent and eager to learn. Excellent with children and other pets.'
+  },
+  {
+    id: 'p-102',
+    name: 'Oliver',
+    breed: 'Poodle',
+    status: 'available',
+    gender: 'male',
+    birthDate: '2025-09-10',
+    images: ['/images/puppies/oliver-1.jpg', '/images/puppies/oliver-2.jpg'],
+    color: 'black',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/poodle-sire-2.jpg',
+      dam: '/images/parents/poodle-dam-2.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies'],
+    price: 925,
+    notes: 'Standard Poodle, confident and athletic. Great for active families who enjoy outdoor activities.'
+  },
+  {
+    id: 'p-103',
+    name: 'Lily',
+    breed: 'Poodle',
+    status: 'available',
+    gender: 'female',
+    birthDate: '2025-08-30',
+    images: ['/images/puppies/lily-1.jpg', '/images/puppies/lily-2.jpg', '/images/puppies/lily-3.jpg'],
+    color: 'white',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/poodle-sire-3.jpg',
+      dam: '/images/parents/poodle-dam-3.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies', 'Bordetella'],
+    price: 799,
+    notes: 'Toy Poodle, affectionate and playful. Perfect companion for apartment living or smaller homes.'
+  },
+  {
     id: 'p-001',
     name: 'Luna',
     breed: 'Maltipoo',
@@ -33,8 +87,8 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/maltipoo-dam-1.jpg'
     },
     vaccinations: ['DHLPP', 'Rabies'],
-    price: 2600,
-    notes: 'Family raised, very playful and affectionate'
+    price: 825,
+    notes: 'Family raised, very playful and affectionful'
   },
   {
     id: 'p-002',
@@ -51,7 +105,7 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/goldendoodle-dam-1.jpg'
     },
     vaccinations: ['DHLPP'],
-    price: 2800,
+    price: 875,
     notes: 'Gentle temperament, great with kids'
   },
   {
@@ -69,7 +123,7 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/labradoodle-dam-1.jpg'
     },
     vaccinations: ['DHLPP', 'Bordetella'],
-    price: 2500,
+    price: 699,
     notes: 'Smart and trainable, loves water'
   },
   {
@@ -87,7 +141,7 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/bernedoodle-dam-1.jpg'
     },
     vaccinations: ['DHLPP'],
-    price: 3200,
+    price: 975,
     notes: 'Calm and loyal, excellent family dog'
   },
   {
@@ -105,7 +159,7 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/maltipoo-dam-2.jpg'
     },
     vaccinations: ['DHLPP', 'Rabies'],
-    price: 2600,
+    price: 825,
     notes: 'Sweet and cuddly, loves attention'
   },
   {
@@ -123,7 +177,7 @@ export const puppies: Puppy[] = [
       dam: '/images/parents/goldendoodle-dam-1.jpg'
     },
     vaccinations: ['DHLPP'],
-    price: 2800,
+    price: 875,
     notes: 'Energetic and friendly, loves to play'
   }
 ];

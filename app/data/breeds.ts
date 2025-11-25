@@ -18,6 +18,28 @@ export interface Breed {
 
 export const breeds: Breed[] = [
   {
+    id: 'poodle',
+    name: 'Poodle',
+    description: 'The Poodle is an elegant and intelligent breed known for its distinctive curly coat and exceptional trainability. Available in three size varieties (Standard, Miniature, and Toy), Poodles are versatile dogs that excel in various activities from companionship to performance sports. They are highly intelligent, hypoallergenic, and make excellent family pets.',
+    traits: ['Intelligent', 'Elegant', 'Hypoallergenic', 'Trainable', 'Active', 'Loyal'],
+    origin: 'Germany, 15th-16th century',
+    temperament: 'Poodles are known for their intelligence, elegance, and friendly nature. They are highly trainable and eager to please, making them excellent companions. Standard Poodles are more reserved and dignified, while Miniature and Toy Poodles are often more playful and energetic. All varieties are generally good with children and other pets when properly socialized.',
+    trainability: 'Extremely trainable and intelligent. Poodles are among the most trainable breeds and excel in obedience, agility, and various dog sports. They respond exceptionally well to positive reinforcement training methods and enjoy mental stimulation.',
+    colors: ['White', 'Black', 'Apricot', 'Silver', 'Cream', 'Brown', 'Red', 'Blue', 'Gray', 'Parti-color'],
+    sizes: {
+      height: 'Over 15 inches (Standard), 10-15 inches (Miniature), under 10 inches (Toy)',
+      weight: '45-70 pounds (Standard), 15-17 pounds (Miniature), 4-6 pounds (Toy)'
+    },
+    lifeExpectancy: '12-15 years',
+    image: '/images/breeds/poodle-hero.jpg',
+    gallery: [
+      '/images/breeds/poodle-1.jpg',
+      '/images/breeds/poodle-2.jpg',
+      '/images/breeds/poodle-3.jpg',
+      '/images/breeds/poodle-4.jpg'
+    ]
+  },
+  {
     id: 'maltipoo',
     name: 'Maltipoo',
     description: 'The Maltipoo is a popular designer dog breed that is a cross between a Maltese and a Toy or Miniature Poodle. Known for their adorable looks and friendly temperament, Maltipoos make excellent companion pets for individuals and families alike.',

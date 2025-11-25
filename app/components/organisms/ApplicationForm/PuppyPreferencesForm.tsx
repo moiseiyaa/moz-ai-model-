@@ -328,6 +328,189 @@ const PuppyPreferencesForm = () => {
       </div>
       
       <div>
+        <h3 className="text-lg font-medium text-gray-900 mb-4">
+          Preferred Color <span className="text-red-500">*</span>
+        </h3>
+        <p className="text-sm text-gray-600 mb-2">Check all that apply</p>
+        
+        <div className="space-y-2">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-apricot"
+              name="preferredColors-apricot"
+              checked={formData.preferredColors.includes('apricot')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-apricot" className="ml-2 block text-sm text-gray-700">
+              Apricot
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-black"
+              name="preferredColors-black"
+              checked={formData.preferredColors.includes('black')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-black" className="ml-2 block text-sm text-gray-700">
+              Black
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-white"
+              name="preferredColors-white"
+              checked={formData.preferredColors.includes('white')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-white" className="ml-2 block text-sm text-gray-700">
+              White
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-cream"
+              name="preferredColors-cream"
+              checked={formData.preferredColors.includes('cream')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-cream" className="ml-2 block text-sm text-gray-700">
+              Cream
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-chocolate"
+              name="preferredColors-chocolate"
+              checked={formData.preferredColors.includes('chocolate')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-chocolate" className="ml-2 block text-sm text-gray-700">
+              Chocolate
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-tri-color"
+              name="preferredColors-tri-color"
+              checked={formData.preferredColors.includes('tri-color')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-tri-color" className="ml-2 block text-sm text-gray-700">
+              Tri-Color
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredColors-golden"
+              name="preferredColors-golden"
+              checked={formData.preferredColors.includes('golden')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredColors-golden" className="ml-2 block text-sm text-gray-700">
+              Golden
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 className="text-lg font-medium text-gray-900 mb-4">
+          Preferred Coat Type <span className="text-red-500">*</span>
+        </h3>
+        <p className="text-sm text-gray-600 mb-2">Check all that apply</p>
+        
+        <div className="space-y-2">
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredCoatTypes-curly"
+              name="preferredCoatTypes-curly"
+              checked={formData.preferredCoatTypes.includes('curly')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredCoatTypes-curly" className="ml-2 block text-sm text-gray-700">
+              Curly (Poodle-like)
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredCoatTypes-wavy"
+              name="preferredCoatTypes-wavy"
+              checked={formData.preferredCoatTypes.includes('wavy')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredCoatTypes-wavy" className="ml-2 block text-sm text-gray-700">
+              Wavy (Doodle-like)
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredCoatTypes-straight"
+              name="preferredCoatTypes-straight"
+              checked={formData.preferredCoatTypes.includes('straight')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredCoatTypes-straight" className="ml-2 block text-sm text-gray-700">
+              Straight
+            </label>
+          </div>
+          
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="preferredCoatTypes-furnishings"
+              name="preferredCoatTypes-furnishings"
+              checked={formData.preferredCoatTypes.includes('furnishings')}
+              onChange={handleInputChange}
+              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+              disabled={!!selectedPuppyId}
+            />
+            <label htmlFor="preferredCoatTypes-furnishings" className="ml-2 block text-sm text-gray-700">
+              With Furnishings (beard, eyebrows)
+            </label>
+          </div>
+        </div>
+      </div>
+      
+      <div>
         <label htmlFor="activityLevel" className="block text-lg font-medium text-gray-900 mb-1">
           What activity level would you like in a puppy/dog? <span className="text-red-500">*</span>
         </label>
