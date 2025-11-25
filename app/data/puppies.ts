@@ -73,6 +73,60 @@ export const puppies: Puppy[] = [
     notes: 'Toy Poodle, affectionate and playful. Perfect companion for apartment living or smaller homes.'
   },
   {
+    id: 'p-201',
+    name: 'Princess',
+    breed: 'Maltese',
+    status: 'available',
+    gender: 'female',
+    birthDate: '2025-09-05',
+    images: ['/images/puppies/princess-1.jpg', '/images/puppies/princess-2.jpg', '/images/puppies/princess-3.jpg'],
+    color: 'white',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/maltese-sire-1.jpg',
+      dam: '/images/parents/maltese-dam-1.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies', 'Bordetella'],
+    price: 899,
+    notes: 'Elegant and graceful, loves to be pampered. Perfect lap dog with a sweet, gentle personality.'
+  },
+  {
+    id: 'p-202',
+    name: 'Bentley',
+    breed: 'Maltese',
+    status: 'available',
+    gender: 'male',
+    birthDate: '2025-08-28',
+    images: ['/images/puppies/bentley-1.jpg', '/images/puppies/bentley-2.jpg'],
+    color: 'white',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/maltese-sire-2.jpg',
+      dam: '/images/parents/maltese-dam-2.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies'],
+    price: 925,
+    notes: 'Playful and energetic, loves attention. Great with children and makes an excellent family companion.'
+  },
+  {
+    id: 'p-203',
+    name: 'Angel',
+    breed: 'Maltese',
+    status: 'available',
+    gender: 'female',
+    birthDate: '2025-09-12',
+    images: ['/images/puppies/angel-1.jpg', '/images/puppies/angel-2.jpg', '/images/puppies/angel-3.jpg'],
+    color: 'cream',
+    generation: 'Purebred',
+    parents: {
+      sire: '/images/parents/maltese-sire-3.jpg',
+      dam: '/images/parents/maltese-dam-3.jpg'
+    },
+    vaccinations: ['DHLPP', 'Rabies', 'Bordetella'],
+    price: 875,
+    notes: 'Sweet and affectionate, loves to cuddle. Ideal companion for seniors or those seeking a calm, loving pet.'
+  },
+  {
     id: 'p-001',
     name: 'Luna',
     breed: 'Maltipoo',

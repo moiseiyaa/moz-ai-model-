@@ -43,6 +43,28 @@ export const breeds: Breed[] = [
     ]
   },
   {
+    id: 'maltese',
+    name: 'Maltese',
+    description: 'The Maltese is a small, elegant toy breed known for its long, silky white coat and gentle, affectionate nature. These charming dogs have been beloved companions for centuries, dating back to ancient times. Maltese are perfect lap dogs, ideal for apartment living, and make wonderful companions for individuals and families seeking a small, low-shedding pet.',
+    traits: ['Affectionate', 'Gentle', 'Playful', 'Intelligent', 'Low-shedding', 'Elegant'],
+    origin: 'Mediterranean (Malta), Ancient times',
+    temperament: 'Maltese are known for their sweet, gentle, and affectionate nature. They form strong bonds with their owners and thrive on human companionship. Despite their small size, they are playful and energetic, but also enjoy cuddling and being pampered. They are generally good with children and other pets when properly socialized, though they may be reserved with strangers initially.',
+    trainability: 'Highly intelligent and trainable, though they can be somewhat stubborn at times. They respond well to positive reinforcement training methods and enjoy learning tricks. Early socialization and consistent training are important for a well-behaved Maltese.',
+    colors: ['White', 'Cream'],
+    sizes: {
+      height: '7-9 inches',
+      weight: '4-7 pounds'
+    },
+    lifeExpectancy: '12-15 years',
+    image: '/images/breeds/maltese-hero.jpg',
+    gallery: [
+      '/images/breeds/maltese-1.jpg',
+      '/images/breeds/maltese-2.jpg',
+      '/images/breeds/maltese-3.jpg',
+      '/images/breeds/maltese-4.jpg'
+    ]
+  },
+  {
     id: 'maltipoo',
     name: 'Maltipoo',
     description: 'The Maltipoo is a popular designer dog breed that is a cross between a Maltese and a Toy or Miniature Poodle. Known for their adorable looks and friendly temperament, Maltipoos make excellent companion pets for individuals and families alike.',

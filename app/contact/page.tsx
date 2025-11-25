@@ -59,14 +59,14 @@ const ContactPage = () => {
     {
       icon: <FaPhone className="h-6 w-6 text-primary" />,
       title: 'Phone',
-      content: '(555) 123-4567',
-      link: 'tel:+15551234567'
+      content: '+1 909 265-4575',
+      link: 'tel:+19092654575'
     },
     {
       icon: <FaEnvelope className="h-6 w-6 text-primary" />,
       title: 'Email',
-      content: 'info@puppyhubusa.com',
-      link: 'mailto:info@puppyhubusa.com'
+      content: 'puppyhubusa@gmail.com',
+      link: 'mailto:puppyhubusa@gmail.com'
     },
     {
       icon: <FaMapMarkerAlt className="h-6 w-6 text-primary" />,
@@ -307,7 +307,7 @@ const ContactPage = () => {
                 ></iframe>
               </div>
               <p className="text-gray-700">
-                Our Denver headquarters features a welcoming environment where you can meet our team and, by appointment, some of our available puppies. We're conveniently located in downtown Denver with ample parking available.
+                Our Denver headquarters features a welcoming environment where you can, by appointment, see some of our available puppies. We're conveniently located in downtown Denver with ample parking available.
               </p>
             </div>
             

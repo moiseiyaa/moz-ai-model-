@@ -7,35 +7,9 @@ import Container from '../components/organisms/Container';
 
 /**
  * About page component
- * Displays information about PuppyHub USA, its mission, values, and team
+ * Displays information about PuppyHub USA, its mission, and values
  */
 const AboutPage = () => {
-  const teamMembers = [
-    {
-      name: 'Sarah Johnson',
-      role: 'Founder & CEO',
-      image: '/images/team/sarah.jpg',
-      bio: 'Sarah founded PuppyHub USA in 2015 with a mission to connect loving families with ethically bred puppies. With over 15 years of experience in animal care, she oversees all operations and breeder partnerships.'
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Head of Breeding Program',
-      image: '/images/team/michael.jpg',
-      bio: 'Michael has a background in veterinary medicine and ensures all our breeding partners maintain the highest standards of care. He personally visits and vets each breeder in our network.'
-    },
-    {
-      name: 'Jessica Rodriguez',
-      role: 'Customer Experience Manager',
-      image: '/images/team/jessica.jpg',
-      bio: 'Jessica leads our customer support team and ensures each family has a smooth adoption experience. She\'s passionate about matching the right puppy with the right family.'
-    },
-    {
-      name: 'David Wilson',
-      role: 'Veterinary Coordinator',
-      image: '/images/team/david.jpg',
-      bio: 'David works with our network of veterinarians to ensure all puppies receive proper healthcare, vaccinations, and genetic testing before going to their forever homes.'
-    }
-  ];
 
   return (
     <div>
@@ -167,38 +141,6 @@ const AboutPage = () => {
                 We believe in matching the right puppy with the right family. Our thorough application process ensures each puppy finds a loving home that's prepared for the commitment of pet ownership.
               </p>
             </div>
-          </div>
-        </Container>
-      </section>
-      
-      {/* Our Team Section */}
-      <section className="py-16 bg-white">
-        <Container>
-          <div className="max-w-3xl mx-auto text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Meet Our Team</h2>
-            <p className="text-lg text-gray-700">
-              The passionate people behind PuppyHub USA
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden shadow-sm">
-                <div className="relative h-64">
-                  <Image
-                    src={member.image}
-                    alt={member.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                  <p className="text-primary font-medium mb-4">{member.role}</p>
-                  <p className="text-gray-700 text-sm">{member.bio}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </Container>
       </section>
