@@ -26,7 +26,7 @@ const ScrollToTop = ({
       onClick={scrollToTop}
       aria-label={ariaLabel}
       className={cn(
-        'fixed bottom-8 right-8 p-3 rounded-full bg-primary text-white shadow-lg z-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
+        'fixed bottom-8 left-8 p-3 rounded-full bg-primary text-white shadow-lg z-50 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary',
         showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10 pointer-events-none',
         className
       )}

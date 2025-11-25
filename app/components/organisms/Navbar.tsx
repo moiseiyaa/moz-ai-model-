@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -20,6 +20,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const { items } = useCart();
   const breeds = getAllBreeds();
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Handle scroll event to make navbar sticky
   useEffect(() => {
@@ -40,6 +41,23 @@ const Navbar = () => {
     setIsOpen(false);
     setIsMobileBreedOpen(false);
   }, [pathname]);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsBreedDropdownOpen(false);
+      }
+    };
+
+    if (isBreedDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isBreedDropdownOpen]);
 
   // Prevent body scroll when mobile menu open
   useEffect(() => {
@@ -92,19 +110,19 @@ const Navbar = () => {
             </Link>
             
             {/* Breeds Dropdown */}
-            <div className="relative">
+            <div className="relative" ref={dropdownRef}>
               <button 
                 className={`flex items-center text-base font-medium transition-colors relative group ${
                   pathname?.startsWith('/breeds') ? 'text-primary-600' : 'text-gray-800 hover:text-primary-500'
                 }`}
                 onClick={() => setIsBreedDropdownOpen(!isBreedDropdownOpen)}
               >
-                <span>Breeds</span> <FaChevronDown className={`ml-1 h-3 w-3 transition-transform duration-300 ${isBreedDropdownOpen ? 'rotate-180' : ''}`} />
+                <span>Breeds</span> <FaChevronDown className={`ml-1 h-3 w-3 ${isBreedDropdownOpen ? 'rotate-180' : ''}`} />
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 bg-primary-500 transition-all duration-300 ${pathname?.startsWith('/breeds') ? 'w-full' : 'group-hover:w-full'}`}></span>
               </button>
               
               {isBreedDropdownOpen && (
-                <div className="absolute top-full left-0 mt-2 w-56 rounded-lg shadow-soft bg-white/95 backdrop-blur-md border border-gray-100 z-50 overflow-hidden animate-float">
+                <div className="absolute top-full left-0 mt-2 w-56 rounded-lg shadow-soft bg-white/95 backdrop-blur-md border border-gray-100 z-50 overflow-hidden">
                   <div className="py-1" role="menu" aria-orientation="vertical">
                     {breeds.map((breed) => (
                       <Link
@@ -227,7 +245,7 @@ const Navbar = () => {
         <div
           id="mobile-menu"
           className={
-            `fixed top-0 right-0 h-full w-4/5 max-w-[20rem] bg-white shadow-xl z-50 md:hidden transition-transform duration-300 rounded-l-2xl
+            `fixed top-0 right-0 h-full w-4/5 max-w-[20rem] bg-white shadow-xl z-50 md:hidden rounded-l-2xl
             ${isOpen ? 'translate-x-0' : 'translate-x-full'}
             flex flex-col pt-16 px-6 pb-10 overflow-y-auto`
           }
@@ -259,7 +277,7 @@ const Navbar = () => {
                 onClick={() => setIsMobileBreedOpen((prev) => !prev)}
                 aria-expanded={isMobileBreedOpen}
               >
-                Breeds <FaChevronDown className={`ml-1 h-3 w-3 transition-transform ${isMobileBreedOpen ? 'rotate-180' : ''}`} />
+                Breeds <FaChevronDown className={`ml-1 h-3 w-3 ${isMobileBreedOpen ? 'rotate-180' : ''}`} />
               </button>
               {isMobileBreedOpen && (
                 <div className="ml-4 space-y-3">
