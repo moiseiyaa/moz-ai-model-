@@ -16,6 +16,9 @@ export interface Breed {
   gallery: string[];
 }
 
+// Import color utilities for consistency
+import { getFormattedColors, getPuppiesByColor } from './colors';
+
 export const breeds: Breed[] = [
   {
     id: 'poodle',
@@ -25,7 +28,7 @@ export const breeds: Breed[] = [
     origin: 'Germany, 15th-16th century',
     temperament: 'Poodles are known for their intelligence, elegance, and friendly nature. They are highly trainable and eager to please, making them excellent companions. Standard Poodles are more reserved and dignified, while Miniature and Toy Poodles are often more playful and energetic. All varieties are generally good with children and other pets when properly socialized.',
     trainability: 'Extremely trainable and intelligent. Poodles are among the most trainable breeds and excel in obedience, agility, and various dog sports. They respond exceptionally well to positive reinforcement training methods and enjoy mental stimulation.',
-    colors: ['White', 'Black', 'Apricot', 'Silver', 'Cream', 'Brown', 'Red', 'Blue', 'Gray', 'Parti-color'],
+    colors: ['White', 'Black', 'Apricot', 'Cream'],
     sizes: {
       height: 'Over 15 inches (Standard), 10-15 inches (Miniature), under 10 inches (Toy)',
       weight: '45-70 pounds (Standard), 15-17 pounds (Miniature), 4-6 pounds (Toy)'
@@ -47,7 +50,7 @@ export const breeds: Breed[] = [
     origin: 'United States, 1990s',
     temperament: 'Maltipoos are known for their friendly, gentle, and affectionate nature. They form strong bonds with their owners and are generally good with children and other pets. They are playful and enjoy interactive games but are equally content to curl up on your lap.',
     trainability: 'Highly trainable due to their intelligence and eagerness to please. They respond well to positive reinforcement training methods and can learn commands and tricks quickly.',
-    colors: ['White', 'Cream', 'Apricot', 'Silver', 'Black', 'Brown'],
+    colors: ['White', 'Cream', 'Apricot', 'Black'],
     sizes: {
       height: '8-14 inches',
       weight: '5-20 pounds'
@@ -69,7 +72,7 @@ export const breeds: Breed[] = [
     origin: 'United States, 1990s',
     temperament: 'Goldendoodles are known for their friendly, outgoing, and affectionate nature. They are excellent family dogs and typically get along well with children and other pets. They are social and enjoy being part of family activities.',
     trainability: 'Highly trainable due to the intelligence of both parent breeds. They are eager to please and respond well to positive reinforcement training methods.',
-    colors: ['Golden', 'Cream', 'Apricot', 'Red', 'Black', 'Brown'],
+    colors: ['Golden', 'Cream', 'Apricot', 'Black'],
     sizes: {
       height: '17-24 inches (Standard), 14-17 inches (Medium), under 14 inches (Mini)',
       weight: '50-90 pounds (Standard), 30-45 pounds (Medium), 15-30 pounds (Mini)'
@@ -91,7 +94,7 @@ export const breeds: Breed[] = [
     origin: 'Australia, 1980s',
     temperament: 'Labradoodles are known for their friendly, outgoing, and affectionate nature. They are generally good with children and other pets, making them excellent family dogs. They are energetic and enjoy outdoor activities.',
     trainability: 'Highly trainable due to the intelligence of both parent breeds. They are eager to please and excel in obedience training and various dog sports.',
-    colors: ['Cream', 'Gold', 'Red', 'Black', 'Chocolate', 'Parti', 'Phantom'],
+    colors: ['Cream', 'Black', 'Chocolate'],
     sizes: {
       height: '21-24 inches (Standard), 17-20 inches (Medium), 14-16 inches (Mini)',
       weight: '50-65 pounds (Standard), 30-45 pounds (Medium), 15-25 pounds (Mini)'
@@ -113,7 +116,7 @@ export const breeds: Breed[] = [
     origin: 'Canada, 2000s',
     temperament: 'Bernedoodles are known for their loyal, gentle, and affectionate nature. They are excellent family dogs and typically get along well with children and other pets. They can be playful but also enjoy relaxing with their family.',
     trainability: 'Moderately to highly trainable depending on which parent breed they take after more. They generally respond well to positive reinforcement training methods.',
-    colors: ['Tri-color (black, white, and brown)', 'Black and white', 'Black', 'Sable', 'Merle'],
+    colors: ['Tri-color', 'Black'],
     sizes: {
       height: '23-29 inches (Standard), 18-22 inches (Mini), 12-17 inches (Tiny)',
       weight: '70-90 pounds (Standard), 25-49 pounds (Mini), 10-24 pounds (Tiny)'

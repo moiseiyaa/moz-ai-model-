@@ -1,15 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { FaCheckCircle, FaPaw, FaHeart, FaBrain, FaRuler } from 'react-icons/fa';
 import Container from '../../components/organisms/Container';
 import PuppyCard from '../../components/molecules/PuppyCard';
-import { getBreedById } from '../../data/breeds';
+import { getBreedById, getAllBreeds } from '../../data/breeds';
 import { getPuppiesByBreed, Puppy } from '../../data/puppies';
 import { getTestimonialsByBreed } from '../../data/testimonials';
+import { getFormattedColors, getPuppiesByColor } from '../../data/colors';
 
 /**
  * Breed page component
@@ -74,7 +76,7 @@ const BreedPage = () => {
               </p>
               
               <div className="flex flex-wrap gap-2 mb-6">
-                {breed.traits.map((trait, index) => (
+                {breed.traits.map((trait: string, index: number) => (
                   <span 
                     key={index} 
                     className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-800 border border-gray-200"
@@ -157,14 +159,25 @@ const BreedPage = () => {
             <div className="mb-12">
               <h3 className="text-xl font-bold text-gray-900 mb-4">Available Colors</h3>
               <div className="flex flex-wrap gap-2">
-                {breed.colors.map((color, index) => (
-                  <span 
-                    key={index} 
-                    className="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium text-gray-800"
-                  >
-                    {color}
-                  </span>
-                ))}
+                {(() => {
+                  // Get colors that are both in breed definition AND actually available in puppies
+                  const breedPuppies = getPuppiesByBreed(breed?.name || '');
+                  const availableColorsInBreed = [...new Set(breedPuppies.map(p => p.color.toLowerCase()))];
+                  const formattedColors = availableColorsInBreed.map(color => 
+                    color.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')
+                  );
+                  
+                  return formattedColors.length > 0 ? formattedColors.map((color, index) => (
+                    <span 
+                      key={index} 
+                      className="bg-gray-100 px-3 py-1 rounded-full text-sm font-medium text-gray-800"
+                    >
+                      {color}
+                    </span>
+                  )) : (
+                    <span className="text-gray-500 text-sm">No puppies currently available</span>
+                  );
+                })()}
               </div>
             </div>
           </div>
@@ -180,7 +193,7 @@ const BreedPage = () => {
           
           {availablePuppies.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {availablePuppies.map((puppy) => (
+              {availablePuppies.map((puppy: Puppy) => (
                 <PuppyCard key={puppy.id} puppy={puppy} />
               ))}
             </div>
@@ -211,7 +224,7 @@ const BreedPage = () => {
             </h2>
             
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {pastPuppies.map((puppy) => (
+              {pastPuppies.map((puppy: Puppy) => (
                 <div key={puppy.id} className="relative h-48 rounded-lg overflow-hidden">
                   <Image
                     src={puppy.images[0] || '/images/placeholder-puppy.jpg'}

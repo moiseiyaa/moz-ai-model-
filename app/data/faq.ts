@@ -45,7 +45,7 @@ export const faqs: FAQ[] = [
   {
     id: "faq-7",
     question: "Can I visit the puppies before adopting?",
-    answer: "In many cases, yes! We encourage visits when geographically feasible. For distant adoptions, we offer video calls to meet the puppy virtually and speak with the breeder or caretaker. Please contact us to arrange a visit or virtual meeting.",
+    answer: "In many cases, yes! We encourage visits when geographically feasible. Please contact us to discuss visitation options and availability in your area.",
     category: "adoption-process"
   },
   {

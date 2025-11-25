@@ -7,6 +7,7 @@ import { useApplicationForm } from '../../../context/ApplicationFormContext';
 import { useCart } from '../../../context/CartContext';
 import { getAllBreeds } from '../../../data/breeds';
 import { getAvailablePuppies, Puppy } from '../../../data/puppies';
+import { getFormattedColors } from '../../../data/colors';
 import { FaMars, FaVenus, FaEye } from 'react-icons/fa';
 
 /**
@@ -20,6 +21,7 @@ const PuppyPreferencesForm = () => {
   const [showAvailablePuppies, setShowAvailablePuppies] = useState(false);
   const [selectedPuppyId, setSelectedPuppyId] = useState<string>('');
   const availablePuppyOptions = getAvailablePuppies();
+  const availableColors = getFormattedColors();
 
   // Autofill from cart (only if preferences are empty and cart has a puppy)
   useEffect(() => {
@@ -334,110 +336,25 @@ const PuppyPreferencesForm = () => {
         <p className="text-sm text-gray-600 mb-2">Check all that apply</p>
         
         <div className="space-y-2">
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-apricot"
-              name="preferredColors-apricot"
-              checked={formData.preferredColors.includes('apricot')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-apricot" className="ml-2 block text-sm text-gray-700">
-              Apricot
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-black"
-              name="preferredColors-black"
-              checked={formData.preferredColors.includes('black')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-black" className="ml-2 block text-sm text-gray-700">
-              Black
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-white"
-              name="preferredColors-white"
-              checked={formData.preferredColors.includes('white')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-white" className="ml-2 block text-sm text-gray-700">
-              White
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-cream"
-              name="preferredColors-cream"
-              checked={formData.preferredColors.includes('cream')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-cream" className="ml-2 block text-sm text-gray-700">
-              Cream
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-chocolate"
-              name="preferredColors-chocolate"
-              checked={formData.preferredColors.includes('chocolate')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-chocolate" className="ml-2 block text-sm text-gray-700">
-              Chocolate
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-tri-color"
-              name="preferredColors-tri-color"
-              checked={formData.preferredColors.includes('tri-color')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-tri-color" className="ml-2 block text-sm text-gray-700">
-              Tri-Color
-            </label>
-          </div>
-          
-          <div className="flex items-center">
-            <input
-              type="checkbox"
-              id="preferredColors-golden"
-              name="preferredColors-golden"
-              checked={formData.preferredColors.includes('golden')}
-              onChange={handleInputChange}
-              className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-              disabled={!!selectedPuppyId}
-            />
-            <label htmlFor="preferredColors-golden" className="ml-2 block text-sm text-gray-700">
-              Golden
-            </label>
-          </div>
+          {availableColors.map((color) => (
+            <div key={color} className="flex items-center">
+              <input
+                type="checkbox"
+                id={`preferredColors-${color.toLowerCase().replace(' ', '-')}`}
+                name={`preferredColors-${color.toLowerCase().replace(' ', '-')}`}
+                checked={formData.preferredColors.includes(color.toLowerCase())}
+                onChange={handleInputChange}
+                className="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                disabled={!!selectedPuppyId}
+              />
+              <label 
+                htmlFor={`preferredColors-${color.toLowerCase().replace(' ', '-')}`} 
+                className="ml-2 block text-sm text-gray-700"
+              >
+                {color}
+              </label>
+            </div>
+          ))}
         </div>
       </div>
       

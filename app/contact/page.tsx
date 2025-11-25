@@ -331,7 +331,7 @@ const ContactPage = () => {
                 <div>
                   <h3 className="text-lg font-medium text-gray-900 mb-1">Do you offer virtual meetings?</h3>
                   <p className="text-gray-700">
-                    Absolutely. For families who can't visit in person, we offer video calls to meet puppies and discuss the adoption process.
+                    We encourage in-person visits when geographically feasible. Please contact us to discuss visitation options and availability in your area.
                   </p>
                 </div>
               </div>
