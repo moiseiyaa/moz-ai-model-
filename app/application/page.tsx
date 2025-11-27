@@ -199,38 +199,7 @@ const ApplicationPage = () => {
                     </div>
                     <div>
                       <h4 className="font-medium text-gray-900">Place Deposit</h4>
-                      <div className="space-y-2 mt-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaCreditCard className="h-4 w-4 text-gray-600" />
-                          </div>
-                          <span className="text-sm font-medium">Credit Cards</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaApple className="h-4 w-4 text-gray-600" />
-                          </div>
-                          <span className="text-sm font-medium">Apple Pay</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaGoogle className="h-4 w-4 text-gray-600" />
-                          </div>
-                          <span className="text-sm font-medium">Google Pay</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaCoins className="h-4 w-4 text-gray-600" />
-                          </div>
-                          <span className="text-sm font-medium">Bank Transfer</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center">
-                            <FaBtc className="h-4 w-4 text-gray-600" />
-                          </div>
-                          <span className="text-sm font-medium">Binance</span>
-                        </div>
-                      </div>
+                      <p className="text-sm text-gray-600">Secure your puppy with a $300 deposit</p>
                     </div>
                   </li>
                   <li className="flex">
@@ -256,15 +225,28 @@ const ApplicationPage = () => {
               
               <div className="bg-white p-6 rounded-lg shadow-md">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">We Accept</h3>
-                <div className="flex flex-wrap gap-2">
-                  <div className="bg-gray-100 p-2 rounded">
-                    <span className="text-sm font-medium">Credit Cards</span>
+                <div className="flex flex-wrap gap-6 items-center">
+                  <div className="flex flex-col items-center gap-2">
+                    <FaCreditCard className="h-8 w-8 text-blue-600" />
+                    <span className="text-xs font-medium text-gray-700">Credit Card</span>
                   </div>
-                  <div className="bg-gray-100 p-2 rounded">
-                    <span className="text-sm font-medium">Bank Transfer</span>
+                  <div className="flex flex-col items-center gap-2">
+                    <FaApple className="h-8 w-8 text-gray-800" />
+                    <span className="text-xs font-medium text-gray-700">Apple Pay</span>
                   </div>
-                  <div className="bg-gray-100 p-2 rounded">
-                    <span className="text-sm font-medium">Cryptocurrency</span>
+                  <div className="flex flex-col items-center gap-2">
+                    <FaGoogle className="h-8 w-8 text-red-500" />
+                    <span className="text-xs font-medium text-gray-700">Google Pay</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <svg className="h-8 w-8 text-orange-600" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm0 22C6.48 22 2 17.52 2 12S6.48 2 12 2s10 4.48 10 10-4.48 10-10 10z"/>
+                    </svg>
+                    <span className="text-xs font-medium text-gray-700">Bank Transfer</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <FaBtc className="h-8 w-8 text-orange-500" />
+                    <span className="text-xs font-medium text-gray-700">Crypto</span>
                   </div>
                 </div>
               </div>
