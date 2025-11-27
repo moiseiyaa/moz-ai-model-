@@ -4,7 +4,6 @@ import Navbar from "./components/organisms/Navbar";
 import PromotionNavbar from "./components/organisms/PromotionNavbar";
 import Footer from "./components/organisms/Footer";
 import CrispProvider from "./components/providers/CrispProvider";
-import CrispChatButton from "./components/atoms/CrispChatButton";
 import { CartProvider } from "./context/CartContext";
 import ScrollToTop from "./components/utils/ScrollToTop";
 import { AdminAuthProvider } from "./context/AdminAuthContext";
@@ -95,11 +94,10 @@ export default function RootLayout({
             <CartProvider>
               <PromotionNavbar />
               <Navbar />
-              <main id="main-content" className="grow pt-20 md:pt-28">
+              <main id="main-content" className="grow pt-20 md:pt-40">
                 {children}
               </main>
               <Footer />
-              <CrispChatButton />
               <ScrollToTop threshold={400} />
               <Analytics />
             </CartProvider>
