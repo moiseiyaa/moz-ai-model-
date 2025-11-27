@@ -12,6 +12,12 @@ const TABS = [
 
 const PUPPY_STATUS = ["available", "reserved", "adopted"];
 
+const getApiUrl = () =>
+  process.env.NEXT_PUBLIC_API_URL ||
+  (process.env.NODE_ENV === "production"
+    ? "https://api.puppyhubusa.com"
+    : "http://localhost:4000");
+
 function PuppiesPanel() {
   const { token } = useAdminAuth();
   const [puppies, setPuppies] = useState<any[]>([]);
@@ -23,8 +29,7 @@ function PuppiesPanel() {
     setLoading(true);
     setError("");
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-      const res = await fetch(`${apiUrl}/api/puppies`);
+      const res = await fetch(`${getApiUrl()}/api/puppies`);
       if (!res.ok) throw new Error("Failed to fetch puppies");
       setPuppies(await res.json());
       setLoading(false);
@@ -41,8 +46,7 @@ function PuppiesPanel() {
     setUpdateStatus((us) => ({ ...us, [id]: true }));
     setError("");
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
-      const res = await fetch(`${apiUrl}/api/puppies/${id}`, {
+      const res = await fetch(`${getApiUrl()}/api/puppies/${id}`, {
         method: 'PATCH',
         headers: {
           "Content-Type": "application/json",

@@ -55,7 +55,10 @@ export const applicationFormSchema = z.object({
   
   // Payment Info (for deposit)
   paymentMethod: z.enum(['creditCard', 'bankTransfer', 'applePay', 'googlePay', 'binance', 'crypto']).optional(),
-  depositAmount: z.coerce.number().default(300)
+  depositAmount: z.coerce.number().default(300),
+  
+  // Optional: Specific puppy ID if selected
+  puppyId: z.string().optional()
 });
 
 export type ApplicationFormData = z.infer<typeof applicationFormSchema>;
@@ -102,7 +105,9 @@ const defaultFormValues: ApplicationFormData = {
   welcomeCall: false,
   
   paymentMethod: undefined,
-  depositAmount: 300
+  depositAmount: 300,
+  
+  puppyId: undefined
 };
 
 interface ApplicationFormContextType {
@@ -342,7 +347,11 @@ export const ApplicationFormProvider = ({ children }: ApplicationFormProviderPro
       applicationFormSchema.parse(formData);
       
       // Submit to backend API
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+      const apiUrl =
+        process.env.NEXT_PUBLIC_API_URL ||
+        (process.env.NODE_ENV === 'production'
+          ? 'https://api.puppyhubusa.com'
+          : 'http://localhost:4000');
       const response = await fetch(`${apiUrl}/api/applications`, {
         method: 'POST',
         headers: {

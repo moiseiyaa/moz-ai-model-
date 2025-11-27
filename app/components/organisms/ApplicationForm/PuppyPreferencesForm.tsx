@@ -47,6 +47,7 @@ const PuppyPreferencesForm = () => {
     updateFormData({
       breedChoices: [{ priority: 1, breed: breedId }],
       preferredGender: selectedPuppy.gender,
+      puppyId: selectedPuppyId,
       // You can map puppy size/generation if applicable, e.g. preferredSizes: [selectedPuppy.size]
     });
   }, [selectedPuppyId, breeds, updateFormData]);
