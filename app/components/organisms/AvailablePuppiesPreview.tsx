@@ -45,7 +45,7 @@ const AvailablePuppiesPreview = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
+    <section className="py-20 bg-linear-to-br from-blue-50 via-white to-purple-50 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-10 left-10 text-blue-200 opacity-20">
         <FaPaw className="h-24 w-24 transform rotate-12" />
@@ -58,12 +58,12 @@ const AvailablePuppiesPreview = () => {
         {/* Header */}
         <div className="text-center mb-12">
           <div className="flex justify-center mb-4">
-            <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
+            <div className="bg-linear-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
               🐕 Available Now
             </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Find Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Perfect Companion</span>
+            Find Your <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">Perfect Companion</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-lg">
             Discover our adorable puppies looking for loving homes. Each one is health-checked, vaccinated, and ready to join your family.
@@ -123,7 +123,7 @@ const AvailablePuppiesPreview = () => {
                 onClick={() => goToSlide(index)}
                 className={`h-3 w-3 rounded-full transition-all duration-300 ${
                   index === currentIndex
-                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 w-8' 
+                    ? 'bg-linear-to-r from-blue-500 to-purple-600 w-8' 
                     : 'bg-gray-300 hover:bg-gray-400'
                 }`}
                 aria-label={`Go to slide ${index + 1}`}
@@ -141,7 +141,7 @@ const AvailablePuppiesPreview = () => {
         <div className="text-center mt-12">
           <Link 
             href="/puppies" 
-            className="inline-flex items-center bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
+            className="inline-flex items-center bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
           >
             View All Available Puppies
             <FaArrowRight className="ml-2" />
