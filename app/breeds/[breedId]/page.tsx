@@ -71,29 +71,16 @@ const BreedPage = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{breed.name} Puppies</h1>
-              <p className="text-lg text-gray-700 mb-6">
-                {breed.description}
-              </p>
-              
+              <p className="text-lg text-gray-700 mb-6">{breed.description}</p>
               <div className="flex flex-wrap gap-2 mb-6">
                 {breed.traits.map((trait: string, index: number) => (
-                  <span 
-                    key={index} 
-                    className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-800 border border-gray-200"
-                  >
-                    {trait}
-                  </span>
+                  <span key={index} className="bg-white px-3 py-1 rounded-full text-sm font-medium text-gray-800 border border-gray-200">{trait}</span>
                 ))}
               </div>
-              
-              <Link 
-                href="#availableBreed" 
-                className="inline-flex items-center bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-full transition-colors"
-              >
+              <Link href="#availableBreed" className="inline-flex items-center bg-primary hover:bg-primary/90 text-white font-medium py-3 px-6 rounded-full transition-colors">
                 View Available {breed.name} Puppies
               </Link>
             </div>
-            
             <div className="relative">
               <div className="relative h-[400px] rounded-2xl overflow-hidden">
                 <Image
