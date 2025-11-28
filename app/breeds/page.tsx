@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import Container from '../components/organisms/Container';
-import { getAllBreeds, getBreedImage } from '../data/breeds';
+import { getAllBreeds } from '../data/breeds';
 
 /**
  * Breeds index page
@@ -32,7 +32,7 @@ const BreedsPage = () => {
             >
               <div className="relative h-64">
                 <Image
-                  src={getBreedImage(breed)}
+                  src={breed.image || '/images/placeholder-breed.jpg'}
                   alt={breed.name}
                   fill
                   className="object-cover transition-transform duration-500 ease-in-out group-hover:scale-105"
