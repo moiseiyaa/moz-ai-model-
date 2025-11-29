@@ -163,8 +163,7 @@ const BreedPage = () => {
               <div className="flex flex-wrap gap-2">
                 {(() => {
                   // Get colors that are both in breed definition AND actually available in puppies
-                  const breedPuppies = getPuppiesByBreed(breed?.name || '');
-                  const availableColorsInBreed = [...new Set(breedPuppies.map(p => p.color.toLowerCase()))];
+                  const availableColorsInBreed = [...new Set(puppies.map(p => p.color.toLowerCase()))];
                   const formattedColors = availableColorsInBreed.map(color => 
                     color.split('-').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join('-')
                   );
