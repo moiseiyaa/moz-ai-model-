@@ -75,7 +75,7 @@ export const puppies: Puppy[] = [
     status: 'available',
     gender: 'female',
     birthDate: '2025-09-05',
-    images: ['/images/puppies/princess-1.jpg', '/images/puppies/princess-2.jpg', '/images/puppies/princess-3.jpg'],
+    images: ['/images/puppies/princess-1.jpg', '/images/puppies/princess-2.jpg', '/images/puppies/princess-3.png'],
     color: 'white',
     generation: 'Purebred',
     parents: {
