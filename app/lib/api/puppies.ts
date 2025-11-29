@@ -8,6 +8,9 @@ export interface Puppy {
   images: string[];
   color: string;
   generation: string;
+  parents: {
+    mother: string;
+  };
   vaccinations: string[];
   price: number;
   notes: string;
