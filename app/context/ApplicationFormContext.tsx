@@ -350,8 +350,13 @@ export const ApplicationFormProvider = ({ children }: ApplicationFormProviderPro
       const apiUrl =
         process.env.NEXT_PUBLIC_API_URL ||
         (process.env.NODE_ENV === 'production'
-          ? 'https://api.puppyhubusa.com'
+          ? 'https://api.puppyhubusa.com'  // TODO: Deploy backend to this URL
           : 'http://localhost:4000');
+      
+      // Debug: Log the actual API URL being used
+      console.log('🚀 Submitting to API URL:', apiUrl);
+      console.log('🔍 Full request URL:', `${apiUrl}/api/applications`);
+      
       const response = await fetch(`${apiUrl}/api/applications`, {
         method: 'POST',
         headers: {
