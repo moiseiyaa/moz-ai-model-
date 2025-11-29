@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import Container from '../components/organisms/Container';
 import PuppyFilters, { FilterOptions } from '../components/molecules/PuppyFilters';
 import PuppyCard from '../components/molecules/PuppyCard';
-import { puppies, Puppy } from '../data/puppies';
+import { puppiesApi, Puppy } from '../lib/api/puppies';
 
 /**
  * Puppies Listing page
@@ -13,8 +13,10 @@ import { puppies, Puppy } from '../data/puppies';
  */
 const PuppiesPage = () => {
   const searchParams = useSearchParams();
-  const [filteredPuppies, setFilteredPuppies] = useState<Puppy[]>(puppies);
-  const [isLoading, setIsLoading] = useState(false);
+  const [filteredPuppies, setFilteredPuppies] = useState<Puppy[]>([]);
+  const [allPuppies, setAllPuppies] = useState<Puppy[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const hasInitialized = useRef(false);
   
   // Get initial filter values from URL
@@ -26,6 +28,25 @@ const PuppiesPage = () => {
   };
   
   const [filters, setFilters] = useState<FilterOptions>(initialFilters);
+
+  // Fetch puppies from API on component mount
+  useEffect(() => {
+    const fetchPuppies = async () => {
+      try {
+        const puppies = await puppiesApi.getAll();
+        setAllPuppies(puppies);
+        setFilteredPuppies(puppies);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch puppies:', err);
+        setError('Failed to load puppies. Please try again later.');
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPuppies();
+  }, []);
   
   // Apply filters and sorting when filters change
   useEffect(() => {
@@ -35,7 +56,7 @@ const PuppiesPage = () => {
     }
     
     // Filter puppies based on selected filters
-    let result = [...puppies];
+    let result = [...allPuppies];
     
     if (filters.breed) {
       result = result.filter(puppy => puppy.breed.toLowerCase() === filters.breed.toLowerCase());
@@ -68,7 +89,7 @@ const PuppiesPage = () => {
     setFilteredPuppies(result);
     setIsLoading(false);
     hasInitialized.current = true;
-  }, [filters]);
+  }, [filters, allPuppies]);
   
   const handleFilterChange = (newFilters: FilterOptions) => {
     setFilters(newFilters);
@@ -97,6 +118,13 @@ const PuppiesPage = () => {
             {filteredPuppies.map((puppy) => (
               <PuppyCard key={puppy.id} puppy={puppy} />
             ))}
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <h3 className="text-xl font-medium text-red-600 mb-2">Error Loading Puppies</h3>
+            <p className="text-gray-700">
+              {error}
+            </p>
           </div>
         ) : (
           <div className="text-center py-12">

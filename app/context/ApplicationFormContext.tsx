@@ -350,7 +350,7 @@ export const ApplicationFormProvider = ({ children }: ApplicationFormProviderPro
       const apiUrl =
         process.env.NEXT_PUBLIC_API_URL ||
         (process.env.NODE_ENV === 'production'
-          ? 'https://api.puppyhubusa.com'  // TODO: Deploy backend to this URL
+          ? 'https://pup-server.vercel.app'
           : 'http://localhost:4000');
       
       // Debug: Log the actual API URL being used

@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useApplicationForm } from '../../../context/ApplicationFormContext';
 import { useCart } from '../../../context/CartContext';
 import { getAllBreeds } from '../../../data/breeds';
-import { getAvailablePuppies, Puppy } from '../../../data/puppies';
+import { puppiesApi, Puppy } from '../../../lib/api/puppies';
 import { FaMars, FaVenus, FaEye } from 'react-icons/fa';
 
 /**
@@ -19,7 +19,25 @@ const PuppyPreferencesForm = () => {
   const breeds = getAllBreeds();
   const [showAvailablePuppies, setShowAvailablePuppies] = useState(false);
   const [selectedPuppyId, setSelectedPuppyId] = useState<string>('');
-  const availablePuppyOptions = getAvailablePuppies();
+  const [availablePuppyOptions, setAvailablePuppyOptions] = useState<Puppy[]>([]);
+  const [isLoadingPuppies, setIsLoadingPuppies] = useState(true);
+
+  // Fetch available puppies from API
+  useEffect(() => {
+    const fetchPuppies = async () => {
+      try {
+        const puppies = await puppiesApi.getAvailable();
+        setAvailablePuppyOptions(puppies);
+      } catch (error) {
+        console.error('Failed to fetch available puppies:', error);
+        setAvailablePuppyOptions([]);
+      } finally {
+        setIsLoadingPuppies(false);
+      }
+    };
+
+    fetchPuppies();
+  }, []);
 
   // Autofill from cart (only if preferences are empty and cart has a puppy)
   useEffect(() => {
@@ -54,7 +72,7 @@ const PuppyPreferencesForm = () => {
   
   // Get available puppies and filter by preferences if selected
   const availablePuppies = useMemo(() => {
-    let puppies = getAvailablePuppies();
+    let puppies = [...availablePuppyOptions];
     
     // Filter by breed if selected
     if (formData.breedChoices[0]?.breed) {
@@ -70,7 +88,7 @@ const PuppyPreferencesForm = () => {
     }
     
     return puppies;
-  }, [formData.breedChoices, formData.preferredGender, breeds]);
+  }, [formData.breedChoices, formData.preferredGender, breeds, availablePuppyOptions]);
   
   const calculateAge = (birthDate: string): string => {
     const birthDateObj = new Date(birthDate);
@@ -148,8 +166,11 @@ const PuppyPreferencesForm = () => {
             value={selectedPuppyId}
             onChange={e => setSelectedPuppyId(e.target.value)}
             className="w-full border border-gray-300 rounded-md py-2 px-3 mb-2 focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+            disabled={isLoadingPuppies}
           >
-            <option value="">-- Select from available puppies --</option>
+            <option value="">
+              {isLoadingPuppies ? '-- Loading puppies...' : '-- Select from available puppies --'}
+            </option>
             {availablePuppyOptions.map(puppy => (
               <option key={puppy.id} value={puppy.id}>
                 {puppy.name} ({puppy.breed}, {puppy.gender}, {puppy.color})

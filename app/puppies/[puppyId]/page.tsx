@@ -6,11 +6,10 @@ import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import { FaMars, FaVenus, FaCheckCircle, FaShieldAlt, FaHeart, FaArrowLeft, FaCalendarAlt, FaDollarSign } from 'react-icons/fa';
 import Container from '../../components/organisms/Container';
-import { getPuppyById } from '../../data/puppies';
+import { puppiesApi, Puppy } from '../../lib/api/puppies';
 import { getBreedById } from '../../data/breeds';
 import { useCart } from '../../context/CartContext';
 import PuppyCard from '../../components/molecules/PuppyCard';
-import { getPuppiesByBreed, Puppy } from '../../data/puppies';
 
 /**
  * Individual puppy detail page
@@ -20,37 +19,72 @@ const PuppyDetailPage = () => {
   const { puppyId } = useParams();
   const router = useRouter();
   const { addToCart, isInCart } = useCart();
-  const [puppy, setPuppy] = useState(getPuppyById(puppyId as string));
+  const [puppy, setPuppy] = useState<Puppy | null>(null);
   const [breed, setBreed] = useState<any>(null);
   const [relatedPuppies, setRelatedPuppies] = useState<Puppy[]>([]);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isReserving, setIsReserving] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (puppyId) {
-      const puppyData = getPuppyById(puppyId as string);
-      setPuppy(puppyData);
+    const fetchPuppy = async () => {
+      if (!puppyId) return;
       
-      if (puppyData) {
-        const breedData = getBreedById(puppyData.breed.toLowerCase().replace(/\s+/g, '-'));
-        setBreed(breedData);
+      try {
+        setIsLoading(true);
+        const puppyData = await puppiesApi.getById(puppyId as string);
+        setPuppy(puppyData);
+        setError(null);
         
-        // Get related puppies (same breed, different puppy)
-        const related = getPuppiesByBreed(puppyData.breed)
-          .filter(p => p.id !== puppyData.id && p.status === 'available')
-          .slice(0, 3);
-        setRelatedPuppies(related);
+        if (puppyData) {
+          const breedData = getBreedById(puppyData.breed.toLowerCase().replace(/\s+/g, '-'));
+          setBreed(breedData);
+          
+          // Get related puppies (same breed, different puppy)
+          try {
+            const related = await puppiesApi.getByBreed(puppyData.breed);
+            const filteredRelated = related
+              .filter(p => p.id !== puppyData.id && p.status === 'available')
+              .slice(0, 3);
+            setRelatedPuppies(filteredRelated);
+          } catch (err) {
+            console.error('Failed to fetch related puppies:', err);
+            setRelatedPuppies([]);
+          }
+        }
+      } catch (err) {
+        console.error('Failed to fetch puppy:', err);
+        setError('Failed to load puppy information. Please try again later.');
+        setPuppy(null);
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
+
+    fetchPuppy();
   }, [puppyId]);
 
-  if (!puppy) {
+  if (isLoading) {
     return (
       <Container>
         <div className="py-16 text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-4">Puppy Not Found</h1>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-lg text-gray-700">Loading puppy information...</p>
+        </div>
+      </Container>
+    );
+  }
+
+  if (error || !puppy) {
+    return (
+      <Container>
+        <div className="py-16 text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            {error ? 'Error Loading Puppy' : 'Puppy Not Found'}
+          </h1>
           <p className="text-lg text-gray-700 mb-8">
-            The puppy you are looking for does not exist or has been removed.
+            {error || 'The puppy you are looking for does not exist or has been removed.'}
           </p>
           <Link 
             href="/puppies" 
